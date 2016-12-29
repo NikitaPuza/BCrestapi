@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
     var token = req.body.token;
     var storeurl = req.body.storeurl;
     var newurl = storeurl + appendBaseURL;
-    var geturl = "https://www." + newurl + "orders";
+    var geturl = newurl + "orders";
     var encode1 = username + ":" + token;
     var encode2 = new Buffer(encode1).toString('base64');
     var credentials = "Basic" + " " + encode2;
@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
     var options = {
     uri: geturl,
     method: 'GET',
+    port: 443,
     headers: {
         'Content-Type': 'application/json',
         'Authentication': credentials
