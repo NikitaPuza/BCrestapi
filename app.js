@@ -5,9 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var request = require('request');
+var https = require('https');
+
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var send = require('./routes/send');
 
 var app = express();
 
@@ -27,35 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/send', send);
 
-/*app.post('/send', function(req, res, next) {
-  res.render('send', { title: 'request sent' });
-});
-/*
-/*app.post('/send', function(req, res) {
-	var appendBaseURL = "/api/v2/";
-    var username = req.body.username;
-    var token = req.body.token;
-    var storeurl = req.body.storeurl;
-    var newurl = storeurl + appendBaseURL;
-    var geturl = "https://" + newurl + "orders";
-    var encode1 = username + ":" + token;
-    //var encode2 = new Buffer(encode1).toString('base64');
-
-    //var credentials = "Basic" + " " + encode2;
-
-
-/*
-  /*  var options = {
-    		url: geturl,
-    		method: 'GET',
-    	    headers: {
-    	    	'Authorization': credentials,
-        		'Content-Type': 'application/json',
-        		'Accept': 'application/xml'
-    			}
-			};*/
 
 //request.get(geturl).auth("username", "password");
 
