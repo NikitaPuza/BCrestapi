@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
 var https = require('https');
 
 var appendurl;
@@ -32,21 +31,23 @@ router.post('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     console.log("next");
         options = {
-        host: "buttstore.net",
-        path: "/api/v2/orders",
-        method: 'GET',
+        host: "www.buttstore.net",
+        path: "/api/v2/orders/190",
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': credentials
+            'Authentication': credentials,
+            'Accept': 'application/json'
             }
         };
-        console.log(options);
-    console.log(credentials + " sending to " + geturl);
+    console.log("sending request");
+    next()
+})
 
-    https.request(options, function(error, response, body) {
-       // info = JSON.parse(body);
-        console.log(info);
-    });
-    res.json(info);
+router.post('/', function(req, res, next) {
+    https.get(options, function(res) {
+        console.log(res.statusCode);
+    })
+    console.log(req._headers);
+    res.send("completed");
 });
 module.exports = router;
