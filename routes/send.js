@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var https = require('https');
+var bodyParser = require('body-parser');
 
+// Create variables to use later.
 var appendurl;
 var username;
 var token;
@@ -10,10 +12,9 @@ var geturl;
 var encode1;
 var encode2;
 var credentials;
-var info;
+var body;
 var options;
 
-/* GET users listing. */
 router.post('/', function(req, res, next) {
 	appendurl = "/api/v2/";
     username = req.body.username;
@@ -35,19 +36,22 @@ router.post('/', function(req, res, next) {
         path: "/api/v2/orders/190",
         headers: {
             'Content-Type': 'application/json',
-            'Authentication': credentials,
+            'Authorization': credentials,
             'Accept': 'application/json'
             }
         };
     console.log("sending request");
-    next()
-})
 
-router.post('/', function(req, res, next) {
     https.get(options, function(res) {
-        console.log(res.statusCode);
+        body = '';
+        res.on('data', function(chunk){
+            body +=chunk;
+        });
+        res.on('end', function(){
+            body = JSON.parse(body);
+        });
     })
     console.log(req._headers);
-    res.send("completed");
+    res.render('sent', body);
 });
 module.exports = router;
