@@ -3,36 +3,49 @@ var router = express.Router();
 var request = require('request');
 var https = require('https');
 
+var appendurl;
+var username;
+var token;
+var storeurl;
+var geturl;
+var encode1;
+var encode2;
+var credentials;
+var info;
+var options;
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
-	var appendBaseURL = "/api/v2/";
-    var username = req.body.username;
-    var token = req.body.token;
-    var storeurl = req.body.storeurl;
-    var newurl = storeurl + appendBaseURL;
-    var geturl = newurl + "orders";
-    var encode1 = username + ":" + token;
-    var encode2 = new Buffer(encode1).toString('base64');
-    var credentials = "Basic" + " " + encode2;
-    var info = null;
-    console.log(credentials + " sent to " + geturl);
+	appendurl = "/api/v2/";
+    username = req.body.username;
+    token = req.body.token;
+    storeurl = req.body.storeurl;
+    geturl = appendurl + "orders";
+    encode1 = username + ":" + token;
+    encode2 = new Buffer(encode1).toString('base64');
+    credentials = "Basic" + " " + encode2;
 
-    var options = {
-    uri: geturl,
-    method: 'GET',
-    port: 443,
-    headers: {
-        'Content-Type': 'application/json',
-        'Authentication': credentials
-        }
-    };
+    console.log('generated variables');
+    next()
+})
 
-    https.request(options, function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-        info = JSON.parse(body);
-        console.log(body);
-        }
+router.post('/', function(req, res, next) {
+    console.log("next");
+        options = {
+        host: "buttstore.net",
+        path: "/api/v2/orders",
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authentication': credentials
+            }
+        };
+        console.log(options);
+    console.log(credentials + " sending to " + geturl);
+
+    https.request(options, function(error, response, body) {
+       // info = JSON.parse(body);
+        console.log(info);
     });
     res.json(info);
 });
