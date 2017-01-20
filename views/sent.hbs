@@ -1,3 +1,6 @@
 <h1>Response</h1>
-
-{{data}}
+<ul>
+{{#each .}}
+<li>Category ID: {{id}} Name: {{name}}</li>
+{{/each}}
+</ul>

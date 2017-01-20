@@ -1,28 +1,47 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Image Backup</p>
 
 <form id="form" method="POST" name="formpost" action="/send">
-         <fieldset>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter user name" />
             <br />
             <label for="token">Token:</label>
             <input type="text" id="token" name="token" placeholder="Paste API token" />
             <br />
-            <label for="storeul">Store URL:</label>
-            <input type="text" id="storeurl" name="storeurl" placeholder="Enter the store URL"></textarea>
-            <input type="text" if="usrselect" name="usrselect"></textarea>
+            <label for="storeurl">Store URL:</label>
+            <input type="text" id="storeurl" name="storeurl" placeholder="Enter the store URL">
+            <br />
+            <label for="usermethod">Method</label>
+            <input type="text" id="usermethod" name="usermethod" placeholder="Method">
+            <br />
+            <label for="usermethod">Parameters</label>
+            <input type="text" id="useritem" name="useritem" placeholder="Parameters">
             <br />
             <input type="submit" value="Submit request" id="submitpost" />
-         </fieldset>
 </form>
-
+<button id="getallcategories">GET all categories</button>
+<button id="getallorders">GET all orders</button>
+<button id="getallproducts" onclick="">GET all products</button>
+<script>
+    $('#getallproducts').click(function(){
+        $('#usermethod').val('GET');
+        $('#useritem').val('products');
+    });
+    $('#getallorders').click(function(){
+        $('#usermethod').val('GET');
+        $('#useritem').val('orders');
+    });
+    $('#getallcategories').click(function(){
+        $('#usermethod').val('GET');
+        $('#useritem').val('categories');
+    });
+</script>
 <!--<script>
 $('#form').submit(function(event) {
     var username = $('#username').val();
     var token = $('#token').val();
     var url1 = $('#storeurl').val();
-    var appendBaseURL = "/api/v2/";
+    var appendBaseURL = "/api/v2/";.json?limit=200&page=1'
     var newurl = url1 + appendBaseURL;
     var getallorders = "https://" + newurl + "orders";
     var encode1 = username + ":" + token;

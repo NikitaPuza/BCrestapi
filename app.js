@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var request = require('request');
 var Handlebars = require('hbs');
+var parallel = require("async/parallel");
 
 var index = require('./routes/index');
 var send = require('./routes/send');
