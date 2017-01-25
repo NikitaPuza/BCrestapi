@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var https = require('https');
 var bodyParser = require('body-parser');
-var parallel = require("async/parallel");
 var app = express()
 
 // Create variables to use later.
@@ -15,34 +14,24 @@ var encode1;
 var encode2;
 var credentials;
 var options;
+var usertest;
 var usermethod;
-var useritem;
 var result;
 var body;
 
-router.use(function (req, res, next) {
-  console.log('Time:', Date.now())
-  next()
-})
-
 
 router.post('/', function (req, res, next) {
-	usermethod = req.body.usermethod;
-    console.log(usermethod);
+	usermethod = req.body.usermethod;	
 	useritem = req.body.useritem;
 	username = req.body.username;
 	token = req.body.token;
+	usertest = req.body.usertest;
 	storeurl = "www." + req.body.storeurl;
-	geturl = "/api/v2/products/846/images";
+	geturl = "/api/v2/" + usertest;
+
 	encode1 = username + ":" + token;
 	encode2 = new Buffer(encode1).toString('base64');
 	credentials = "Basic" + " " + encode2;
-
-	next()
-})
-
-router.post('/', function (req, res, next) {
-	console.log("next");
 	options = {
 		host: storeurl,
 		path: geturl,
@@ -53,7 +42,11 @@ router.post('/', function (req, res, next) {
 			'Accept': 'application/json'
 		}
 	};
-	console.log("sending request");
+	next()
+})
+
+router.post('/', function (req, res, next) {
+	console.log("sending " + usermethod +" request to " + storeurl + geturl);
 	var newrequest = https.request(options, function (res) {
         body = '';
 		res.on('data', function (chunk) {
@@ -64,9 +57,8 @@ router.post('/', function (req, res, next) {
 			result = JSON.parse(body);
 		});
 	});
+	console.log('end');
 	newrequest.end();
-	console.log(result);
-
-	res.render('sent', result);
+	res.render('sent', {data: result});
 });
 module.exports = router;
