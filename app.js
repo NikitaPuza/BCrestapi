@@ -14,7 +14,7 @@ var send = require('./routes/send');
 var app = express();
 
 app.use(basicAuth({
-    users: { 'Bigcommerce': 'SellMore!' },
+    users: { 'bigcommerce': 'sellmore!' },
     challenge: true
 }));
 

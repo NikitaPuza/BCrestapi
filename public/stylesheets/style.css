@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+li {
+    border: 2px #EEE solid;
+    display: inline-block;
+    float:left;
+    padding: 4px;
+    width: 48%;
+    margin-bottom: 0.2%;
+}
