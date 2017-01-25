@@ -6,14 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var request = require('request');
 var Handlebars = require('hbs');
-var parallel = require("async/parallel");
+var basicAuth = require('express-basic-auth');
 
 var index = require('./routes/index');
 var send = require('./routes/send');
 
 var app = express();
 
-
+app.use(basicAuth({
+    users: { 'Bigcommerce': 'SellMore!' },
+    challenge: true
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
