@@ -9,7 +9,8 @@ var Handlebars = require('hbs');
 var basicAuth = require('express-basic-auth');
 
 var index = require('./routes/index');
-var send = require('./routes/send');
+var get = require('./routes/get');
+var put = require('./routes/put');
 
 var app = express();
 
@@ -32,7 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 app.use('/', index);
-app.use('/send', send);
+app.use('/get', get);
+app.use('/put', put);
 
 
 //request.get(geturl).auth("username", "password");
