@@ -9,7 +9,7 @@ var basicAuth = require('express-basic-auth');
 
 var index = require('./routes/index');
 var get = require('./routes/get');
-var put = require('./routes/post');
+var post = require('./routes/post');
 
 var app = express();
 
