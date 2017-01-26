@@ -9,9 +9,9 @@ a {
 
 li {
     border: 2px #EEE solid;
-    display: inline-block;
+    display: block;
     float:left;
     padding: 4px;
-    width: 48%;
+    width: 100S%;
     margin-bottom: 0.2%;
 }
