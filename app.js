@@ -4,13 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var request = require('request');
 var Handlebars = require('hbs');
 var basicAuth = require('express-basic-auth');
 
 var index = require('./routes/index');
 var get = require('./routes/get');
-var put = require('./routes/put');
+var put = require('./routes/post');
 
 var app = express();
 
@@ -34,7 +33,7 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 app.use('/', index);
 app.use('/get', get);
-app.use('/put', put);
+app.use('/post', post);
 
 
 //request.get(geturl).auth("username", "password");

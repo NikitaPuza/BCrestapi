@@ -12,6 +12,17 @@ li {
     display: block;
     float:left;
     padding: 4px;
-    width: 100S%;
+    width: 100%;
     margin-bottom: 0.2%;
+}
+
+.hidden {
+    display:none;
+}
+
+.inputfield.visible {
+    margin-bottom: 0.5%;
+}
+#usermethod, #usertest {
+    display:none;
 }
