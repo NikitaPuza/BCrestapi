@@ -18,8 +18,7 @@ var usertest;
 var usermethod;
 var result;
 var b1;
-var catname;
-var caturl;
+var productid;
 var payload;
 
 router.post('/', function (req, res, next) {
@@ -27,9 +26,9 @@ router.post('/', function (req, res, next) {
     username = req.body.username;
     token = req.body.token;
     usertest = req.body.usertest;
-    catname = req.body.catname;
+    productid = "/" + req.body.productid;
     storeurl = "www." + req.body.storeurl;
-    geturl = "/api/v2/" + usertest + "?limit=250";
+    geturl = "/api/v2/" + usertest + productid;
 
     encode1 = username + ":" + token;
     encode2 = new Buffer(encode1).toString('base64');
@@ -44,11 +43,6 @@ router.post('/', function (req, res, next) {
             'Accept': 'application/json'
         }
     };
-
-    payload = JSON.stringify({
-        name: catname
-    });
-    console.log(payload);
     next()
 })
 
@@ -63,11 +57,11 @@ router.post('/', function (req, res) {
         });
         response.on('end', function () {
             console.log(res.statusCode);
-            result = JSON.parse(b1);
-            res.render('post', {data: result});
-            console.log(result);
+           // result = JSON.parse(b1);
+            res.render('delete', {data: productid});
+            console.log(b1);
         });
-    }).end(payload);
+    }).end();
 
     console.log('end');
     //res.render('sent', {data: result});

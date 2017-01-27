@@ -20,7 +20,7 @@ var result;
 var body;
 
 
-router.post('/', function (req, res, next) {
+router.use('/', function (req, res, next) {
 	usermethod = req.body.usermethod;	
 	username = req.body.username;
 	token = req.body.token;
@@ -44,7 +44,7 @@ router.post('/', function (req, res, next) {
 	next()
 })
 
-router.post('/', function (req, res, next) {
+router.use('/', function (req, res, next) {
 	console.log("sending " + usermethod +" request to " + storeurl + geturl);
 	https.request(options, function (response) {
         body = '';
@@ -53,8 +53,8 @@ router.post('/', function (req, res, next) {
 		});
 		response.on('end', function () {
 			console.log(res.statusCode);
-			result = JSON.parse(body);
-			res.render('sent', {data: result});
+                result = JSON.parse(body);
+                res.render('sent', {data: result});
 		});
 	}).end();
 	console.log('end');

@@ -10,6 +10,7 @@ var basicAuth = require('express-basic-auth');
 var index = require('./routes/index');
 var get = require('./routes/get');
 var post = require('./routes/post');
+var del = require('./routes/delete');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/', index);
 app.use('/get', get);
 app.use('/post', post);
+app.use('/delete', del);
 
 
 //request.get(geturl).auth("username", "password");

@@ -13,11 +13,15 @@
     <br />
     <input type="text" id="usermethod" name="usermethod" class="inputfield visible" placeholder="Method">
     <input type="text" id="usertest" name="usertest" class="inputfield visible" placeholder="Parameters">
+
     <label for="catname" class="hidden">Category Name:</label>
     <input type="text" id="catname" name="catname" class="inputfield hidden" placeholder="Category Name">
 
     <label for="caturl" class="hidden">Category URL:</label>
     <input type="text" id="caturl" name="caturl" class="inputfield hidden" placeholder="Category URL">
+
+    <label for="productid" class="prodid hidden">Product ID:</label>
+    <input type="text" id="productid" name="productid" class="prodid inputfield hidden" placeholder="Enter product id">
 
 
     <input type="submit" value="Submit">
@@ -27,8 +31,12 @@
 <button id="getallproducts" onclick="">GET all products</button>
 
 <button id="putnewcategory" onclick="">Create new category</button>
+<button id="getallskus" onclick="">GET all SKUs</button>
 
-
+<div id="dangerzone">
+    <p>Danger Zone</p>
+    <button id="deleteproduct" onclick="">DELETE a product</button>
+</div>
 <script>
     $('#getallproducts').click(function () {
         $('#usermethod').val('GET');
@@ -48,5 +56,15 @@
         $('#usertest').val('categories')
         $('#catname').toggleClass('hidden');
         $('#caturl').toggleClass('hidden');
+    });
+    $('#getallskus').click(function () {
+        $('#usermethod').val('GET');
+        $('#usertest').val('products/skus');
+    });
+    $('#deleteproduct').click(function () {
+        $('#form').attr('action', '/delete');
+        $('#usermethod').val('DELETE');
+        $('#usertest').val('products');
+        $('.prodid').toggleClass('hidden');
     });
 </script>
