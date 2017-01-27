@@ -26,7 +26,7 @@ router.use('/', function (req, res, next) {
     username = req.body.username;
     token = req.body.token;
     usertest = req.body.usertest;
-    storeurl = "www." + req.body.storeurl;
+    storeurl = req.body.storeurl;
     geturl = "/api/v2/" + usertest;
 
     encode1 = username + ":" + token;

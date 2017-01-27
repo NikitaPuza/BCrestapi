@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
     token = req.body.token;
     usertest = req.body.usertest;
     catname = req.body.catname;
-    storeurl = "www." + req.body.storeurl;
+    storeurl = req.body.storeurl;
     geturl = "/api/v2/" + usertest + "?limit=250";
 
     encode1 = username + ":" + token;
