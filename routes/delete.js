@@ -21,7 +21,7 @@ var b1;
 var productid;
 var payload;
 
-router.post('/', function (req, res, next) {
+router.use('/', function (req, res, next) {
     usermethod = req.body.usermethod;
     username = req.body.username;
     token = req.body.token;
