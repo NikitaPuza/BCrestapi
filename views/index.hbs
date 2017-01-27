@@ -36,6 +36,8 @@
 <div id="dangerzone">
     <p>Danger Zone</p>
     <button id="deleteproduct" onclick="">DELETE a product</button>
+    <button id="deleteallproducts" onclick="">DELETE all products</button>
+    <button id="deleteallcategories" onclick="">DELETE all categories</button>
 </div>
 <script>
     $('#getallproducts').click(function () {
@@ -66,5 +68,15 @@
         $('#usermethod').val('DELETE');
         $('#usertest').val('products');
         $('.prodid').toggleClass('hidden');
+    });
+    $('#deleteallproducts').click(function () {
+        $('#form').attr('action', '/delete');
+        $('#usermethod').val('DELETE');
+        $('#usertest').val('products');
+    });
+    $('#deleteallcategories').click(function () {
+        $('#form').attr('action', '/delete');
+        $('#usermethod').val('DELETE');
+        $('#usertest').val('categories');
     });
 </script>

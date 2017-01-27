@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var get = require('./routes/get');
 var post = require('./routes/post');
 var del = require('./routes/delete');
+var delall = require('./routes/deleteall');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/', index);
 app.use('/get', get);
 app.use('/post', post);
 app.use('/delete', del);
+app.use('/deleteall', delall);
 
 
 //request.get(geturl).auth("username", "password");

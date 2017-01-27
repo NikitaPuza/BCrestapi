@@ -44,19 +44,19 @@ router.use('/', function (req, res, next) {
 	next()
 })
 
-router.use('/', function (req, res, next) {
-	console.log("sending " + usermethod +" request to " + storeurl + geturl);
-	https.request(options, function (response) {
-        body = '';
-		response.on('data', function (chunk) {
-			body += chunk;
-		});
-		response.on('end', function () {
-			console.log(res.statusCode);
+router.use('/', function (req, res) {
+        console.log("sending " + usermethod + " request to " + storeurl + geturl);
+        https.request(options, function (response) {
+            body = '';
+            response.on('data', function (chunk) {
+                body += chunk;
+            });
+            response.on('end', function () {
+                console.log(res.statusCode);
                 result = JSON.parse(body);
                 res.render('sent', {data: result});
-		});
-	}).end();
+            });
+        }).end();
 	console.log('end');
 
 	//res.render('sent', {data: result});
