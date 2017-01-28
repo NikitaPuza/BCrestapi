@@ -19,6 +19,7 @@ var usermethod;
 var result;
 var body;
 
+router.use('/', bodyParser.json());
 
 router.use('/', function (req, res, next) {
 	usermethod = req.body.usermethod;	
@@ -55,10 +56,9 @@ router.use('/', function (req, res) {
                 console.log(res.statusCode);
                 result = JSON.parse(body);
                 res.render('sent', {data: result});
+                console.log('end');
             });
         }).end();
-	console.log('end');
-
 	//res.render('sent', {data: result});
    // res.send(result);
 });
