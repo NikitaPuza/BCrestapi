@@ -17,13 +17,10 @@ li {
 .hidden {
     display: none;
 }
-.inputfield.visible {
-    margin-bottom: 0.5%;
-}
 #usermethod, #usertest {
     display: none;
 }
-.btn {
+button, .btn {
     height: 29px;
     display: inline-block;
     text-transform: uppercase;
@@ -45,4 +42,12 @@ li {
     height: 25px;
     width: 21%;
     border: 3px solid #EEE;
+}
+.active {
+    background-color:#1E2D64;
+    border-color: #1E2D64;
+}
+.active:hover {
+    background-color:#1E2D64;
+    border-color: #1E2D64;
 }
