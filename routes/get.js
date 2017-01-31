@@ -57,10 +57,10 @@ router.use('/', function (req, res) {
             response.on('end', function () {
                 console.log(res.statusCode);
                 result = JSON.parse(body);
-                csvBody = json2csv.convert(body);
-                console.log(csvBody);
+             //   csvBody = json2csv.convert(body);
+             //   console.log(csvBody);
 				res.render('sent', {data: result});
-                res.csv(csvBody, 'GET.csv');
+              //  res.csv(csvBody, 'GET.csv');
                 console.log('end');
             });
         }).end();
