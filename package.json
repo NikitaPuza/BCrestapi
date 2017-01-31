@@ -17,6 +17,7 @@
     "https": "^1.0.0",
     "jquery": "^3.1.1",
     "morgan": "~1.7.0",
+    "nice-json2csv": "^0.2.2",
     "nodemon": "^1.11.0"
   }
 }

@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var https = require('https');
 var bodyParser = require('body-parser');
-var app = express()
+var json2csv = require('nice-json2csv');
+
 
 // Create variables to use later.
-var appendurl;
 var username;
 var token;
 var storeurl;
@@ -18,6 +18,8 @@ var usertest;
 var usermethod;
 var result;
 var body;
+var csvBody;
+
 
 router.use('/', bodyParser.json());
 
@@ -43,7 +45,7 @@ router.use('/', function (req, res, next) {
 		}
 	};
 	next()
-})
+});
 
 router.use('/', function (req, res) {
         console.log("sending " + usermethod + " request to " + storeurl + geturl);
@@ -55,7 +57,10 @@ router.use('/', function (req, res) {
             response.on('end', function () {
                 console.log(res.statusCode);
                 result = JSON.parse(body);
-                res.render('sent', {data: result});
+                csvBody = json2csv.convert(body);
+                console.log(csvBody);
+				res.render('sent', {data: result});
+                res.csv(csvBody, 'GET.csv');
                 console.log('end');
             });
         }).end();

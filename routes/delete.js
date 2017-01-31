@@ -1,11 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var https = require('https');
-var bodyParser = require('body-parser');
-var app = express()
 
 // Create variables to use later.
-var appendurl;
 var username;
 var token;
 var storeurl;
@@ -44,7 +41,7 @@ router.use('/', function (req, res, next) {
         }
     };
     next()
-})
+});
 
 
 router.post('/', function (req, res) {

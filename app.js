@@ -4,6 +4,8 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var Handlebars = require('hbs');
 var basicAuth = require('express-basic-auth');
+var json2csv = require('nice-json2csv');
+
 
 var index = require('./routes/index');
 var get = require('./routes/get');
@@ -12,6 +14,7 @@ var del = require('./routes/delete');
 var delall = require('./routes/deleteall');
 
 var app = express();
+app.use(json2csv.expressDecorator);
 
 app.use(basicAuth({
     users: { 'bigcommerce': 'sellmore!' },
