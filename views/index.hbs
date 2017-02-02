@@ -1,7 +1,7 @@
 <h1>{{title}}</h1>
 <p>API</p>
 
-<form id="form" method="POST" name="formpost" action="/get">
+<form id="form" method="GET" name="formpost" action="/get">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" class="inputfield visible" placeholder=" Enter user name">
     <br />
@@ -41,14 +41,17 @@
 </div>
 <script>
     $('#getallproducts').click(function () {
+        $('#form').attr('action', '/get');
         $('#usermethod').val('GET');
         $('#usertest').val('products');
     });
     $('#getallorders').click(function () {
+        $('#form').attr('action', '/get');
         $('#usermethod').val('GET');
         $('#usertest').val('orders');
     });
     $('#getallcategories').click(function () {
+        $('#form').attr('action', '/get');
         $('#usermethod').val('GET');
         $('#usertest').val('categories');
     });
@@ -60,6 +63,7 @@
         $('#caturl').toggleClass('hidden');
     });
     $('#getallskus').click(function () {
+        $('#form').attr('action', '/get');
         $('#usermethod').val('GET');
         $('#usertest').val('products/skus');
     });

@@ -3,7 +3,7 @@
 
 {{#each data}}
 {{#if status_id}}
-<li>{{id}} {{status}}</li>
+<li>ID: {{id}} Status: {{status}} Payment Method: {{payment_method}}</li>
 {{/if}}
 {{#if price}}
 <li>Product ID: {{id}} Name: {{name}} <a href="{{primary_image.zoom_url}}" target="_blank">main image</a> Price: {{price}}</li>

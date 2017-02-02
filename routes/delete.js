@@ -40,11 +40,6 @@ router.use('/', function (req, res, next) {
             'Accept': 'application/json'
         }
     };
-    next()
-});
-
-
-router.post('/', function (req, res) {
     console.log("sending " + usermethod + " request to " + storeurl + geturl);
 
     https.request(options, function (response) {

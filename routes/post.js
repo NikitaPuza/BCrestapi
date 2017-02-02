@@ -18,7 +18,7 @@ var b1;
 var catname;
 var payload;
 
-router.post('/', function (req, res, next) {
+router.use('/', function (req, res, next) {
     usermethod = req.body.usermethod;
     username = req.body.username;
     token = req.body.token;
@@ -45,11 +45,6 @@ router.post('/', function (req, res, next) {
         name: catname
     });
     console.log(payload);
-    next()
-});
-
-
-router.post('/', function (req, res) {
     console.log("sending " + usermethod + " request to " + storeurl + geturl);
 
     https.request(options, function (response) {
@@ -64,8 +59,5 @@ router.post('/', function (req, res) {
             console.log(result);
         });
     }).end(payload);
-
-    console.log('end');
-    //res.render('sent', {data: result});
 });
 module.exports = router;
