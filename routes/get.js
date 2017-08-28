@@ -1,59 +1,29 @@
-var express = require('express');
-var router = express.Router();
-var https = require('https');
-var bodyParser = require('body-parser');
+const express = require('express');
+const get = require('../lib/functions').get;
+const router = express.Router();
 
+router.post('/', (req, res) => {
 
-// Create variables to use later.
-var username;
-var token;
-var storeurl;
-var geturl;
-var encode1;
-var encode2;
-var credentials;
-var options;
-var usertest;
-var usermethod;
-var result;
-var body;
-
-router.use('/', bodyParser.json());
-
-router.use('/', function (req, res) {
-            usermethod = req.body.usermethod;
-            username = req.body.username;
-            token = req.body.token;
-            usertest = req.body.usertest;
-            storeurl = req.body.storeurl;
-            geturl = "/api/v2/" + usertest;
-
-            encode1 = username + ":" + token;
-            encode2 = new Buffer(encode1).toString('base64');
-            credentials = "Basic" + " " + encode2;
-            options = {
-                host: storeurl,
-                path: geturl,
-                method: usermethod,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': credentials,
-                    'Accept': 'application/json'
-                }
-            };
-
-            console.log("sending " + usermethod + " request to " + storeurl + geturl);
-            https.request(options, function (response) {
-                body = '';
-                response.on('data', function (chunk) {
-                    body += chunk;
-                });
-                response.on('end', function () {
-                    console.log(res.statusCode);
-                    result = JSON.parse(body);
-                    res.render('sent', {data: result});
-                    console.log('end');
-                });
-            }).end();
+	let credentials = 'nikitapuzanenko:314dc1b9bfac6db6d203c4b92e3563d941e40f54';
+	credentials = new Buffer(credentials).toString('base64');
+	credentials = 'Basic ' + credentials;
+	console.log(credentials);
+	const options = {
+		host: 'https://store-r8lu9.mybigcommerce.com',
+		path: '/api/v2/time',
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': credentials,
+			'Accept': 'application/json'
+		}
+	};
+	get(options)
+		.then((resolved) => {
+			res.send(resolved);
+		})
+		.catch((error) => {
+			res.send(error);
+		});
 });
 module.exports = router;

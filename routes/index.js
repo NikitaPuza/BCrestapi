@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var https = require('https');
-var bodyParser = require('body-parser');
-
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Rest API' });
