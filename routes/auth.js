@@ -1,15 +1,18 @@
 const express = require('express');
-const get = require('../lib/functions').get;
+const auth = require('../lib/functions').auth;
 const router = express.Router();
 
-router.post('/', function(req, res) {
+router.post('/', (req, res) => {
 
 	let credentials = req.body.user_name + ':' + req.body.token;
+	console.log(req.body);
+	console.log(credentials);
 	credentials = new Buffer(credentials).toString('base64');
 	credentials = 'Basic ' + credentials;
+	console.log(credentials);
 	const options = {
 		host: req.body.host,
-		path: '/api/v2/',
+		path: '/api/v2/time',
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
@@ -17,7 +20,7 @@ router.post('/', function(req, res) {
 			'Accept': 'application/json'
 		}
 	};
-	get(options, req.body.item, req.body.id)
+	auth(options)
 		.then((resolved) => {
 			res.json(resolved);
 		})
@@ -25,6 +28,4 @@ router.post('/', function(req, res) {
 			res.json(error);
 		});
 });
-
-
 module.exports = router;

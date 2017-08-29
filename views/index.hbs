@@ -1,5 +1,5 @@
 <h1>{{title}}</h1>
-<p>API</p>
+<p>Authenticate</p>
 
 <form id="form" method="GET" name="formpost" action="/get">
     <label for="username">Username:</label>
@@ -10,77 +10,5 @@
     <br />
     <label for="storeurl">Store URL:</label>
     <input type="text" id="storeurl" name="storeurl" class="inputfield visible" placeholder=" Enter the store URL">
-    <br />
-    <input type="text" id="usermethod" name="usermethod" class="inputfield visible" placeholder=" Method">
-    <input type="text" id="usertest" name="usertest" class="inputfield visible" placeholder=" Parameters">
-
-    <label for="catname" class="hidden">Category Name:</label>
-    <input type="text" id="catname" name="catname" class="inputfield hidden" placeholder=" Category Name">
-
-    <label for="caturl" class="hidden">Category URL:</label>
-    <input type="text" id="caturl" name="caturl" class="inputfield hidden" placeholder=" Category URL">
-
-    <label for="productid" class="prodid hidden">Product ID:</label>
-    <input type="text" id="productid" name="productid" class="prodid inputfield hidden" placeholder=" Enter product id">
-
-
     <input type="submit" class="btn" value="Submit">
 </form>
-<button id="getallcategories" class="btn">GET all categories</button>
-<button id="getallorders" class="btn">GET all orders</button>
-<button id="getallproducts" class="btn">GET all products</button>
-
-<button id="putnewcategory" class="btn">Create new category</button>
-<button id="getallskus" class="btn">GET all SKUs</button>
-
-<div id="dangerzone">
-    <p>Danger Zone</p>
-    <button id="deleteproduct" onclick="">DELETE a product</button>
-    <button id="deleteallproducts" onclick="">DELETE all products</button>
-    <button id="deleteallcategories" onclick="">DELETE all categories</button>
-</div>
-<script>
-    $('#getallproducts').click(function () {
-        $('#form').attr('action', '/get');
-        $('#usermethod').val('GET');
-        $('#usertest').val('products');
-    });
-    $('#getallorders').click(function () {
-        $('#form').attr('action', '/get');
-        $('#usermethod').val('GET');
-        $('#usertest').val('orders');
-    });
-    $('#getallcategories').click(function () {
-        $('#form').attr('action', '/get');
-        $('#usermethod').val('GET');
-        $('#usertest').val('categories');
-    });
-    $('#putnewcategory').click(function () {
-        $('#form').attr('action', '/post');
-        $('#usermethod').val('POST');
-        $('#usertest').val('categories');
-        $('#catname').toggleClass('hidden');
-        $('#caturl').toggleClass('hidden');
-    });
-    $('#getallskus').click(function () {
-        $('#form').attr('action', '/get');
-        $('#usermethod').val('GET');
-        $('#usertest').val('products/skus');
-    });
-    $('#deleteproduct').click(function () {
-        $('#form').attr('action', '/delete');
-        $('#usermethod').val('DELETE');
-        $('#usertest').val('products');
-        $('.prodid').toggleClass('hidden');
-    });
-    $('#deleteallproducts').click(function () {
-        $('#form').attr('action', '/delete');
-        $('#usermethod').val('DELETE');
-        $('#usertest').val('products');
-    });
-    $('#deleteallcategories').click(function () {
-        $('#form').attr('action', '/delete');
-        $('#usermethod').val('DELETE');
-        $('#usertest').val('categories');
-    });
-</script>
